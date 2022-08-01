@@ -1,0 +1,407 @@
+NAME-UDIT KHANDELWAL					ASSIGNMENT-15
+
+
+1. Write a function to find the greatest number from the given array of any size. (TSRS)
+
+#include<stdio.h>
+#include<conio.h>
+int greatest(int b[],int n);
+int main()
+{
+    int n,i,largest;
+    printf("enter size of array:");
+    scanf("%d",&n);
+    int a[n];
+    printf("enter numbers of array:");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    largest=greatest(a,n);
+    printf("\ngreatest number in array is: %d",largest);
+    getch();
+}
+int greatest(int b[],int n)
+{
+    int i,j,max;
+    max=b[0];
+    for(i=1;i<n;i++)
+    {
+        if(max<b[i])
+            max=b[i];
+    }
+    return max;
+}
+
+
+2. Write a function to find the smallest number from the given array of any size. (TSRS)
+
+#include<stdio.h>
+#include<conio.h>
+int smallest(int b[],int n);
+int main()
+{
+    int n,i,small;
+    printf("enter size of array:");
+    scanf("%d",&n);
+    int a[n];
+    printf("enter numbers of array:");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    small=smallest(a,n);
+    printf("\nsmallest number in array is: %d",small);
+    getch();
+}
+int smallest(int b[],int n)
+{
+    int i,j,min;
+    min=b[0];
+    for(i=1;i<n;i++)
+    {
+        if(min>b[i])
+            min=b[i];
+    }
+    return min;
+}
+
+3. Write a function to sort an array of any size. (TSRS)
+
+#include<stdio.h>
+#include<conio.h>
+int sorting(int b[],int a,int pos,int size);
+int main()
+{
+    int n,i,sort;
+    printf("enter size of array:");
+    scanf("%d",&n);
+    int a[n];
+    printf("enter numbers of array:");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("\nsorted array is:");
+    for(i=0;i<=n-1;i++)
+    {
+        sort=sorting(a,a[i],i,n);
+        printf("%d ",sort);
+    }
+    getch();
+}
+int sorting(int b[],int a,int pos,int size)
+{
+    int i,temp;
+    for(i=pos+1;i<size;i++)
+    {
+        if(b[pos]>b[i])
+        {
+            temp=b[pos];
+            b[pos]=b[i];
+            b[i]=temp;
+        }
+    }
+    return b[pos];
+}
+
+
+4. Write a function to rotate an array by n position in d direction. The d is an indicative
+value for left or right. (For example, if array of size 5 is [32, 29, 40, 12, 70]; n is 2 and
+d is left, then the resulting array after left rotation 2 times is [40, 12, 70, 32, 29] )
+
+#include<stdio.h>
+#include<conio.h>
+void rotate(int b[],int n,int d,int size);
+int main()
+{
+    int size,i,n,d;
+    printf("enter size of array:");
+    scanf("%d",&size);
+    int a[size];
+    printf("enter numbers of array:");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("enter number of position to rotate:");
+    scanf("%d",&n);
+    printf("choose the direction of rotation-\n");
+    printf("1.left\n2.right\n");
+    scanf("%d",&d);
+    printf("new array after rotaion is:");
+    rotate(a,n,d,size);
+    getch();
+}
+void rotate(int b[],int n,int d,int size)
+{
+    int i,c[size];
+    if(d==1)
+    {
+        for(i=0;i<=n;i++)
+            c[i]=b[i+n];
+        for(i=n+1;i<size;i++)
+            c[i]=b[i+n-size];
+    }
+    else if(d==2)
+    {
+        for(i=0;i<n;i++)
+            c[i]=b[n+i+1];
+        for(i=n;i<size;i++)
+            c[i]=b[n+i+1-size];
+    }
+    for(i=0;i<size;i++)
+        printf("%d ",c[i]);
+}
+
+
+5. Write a function to find the first occurrence of adjacent duplicate values in the array.
+Function has to return the value of the element.
+
+#include<stdio.h>
+#include<conio.h>
+int duplicate(int b[],int size);
+int main()
+{
+    int size,i,num;
+    printf("enter size of array:");
+    scanf("%d",&size);
+    int a[size];
+    printf("enter numbers of array:");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    num=duplicate(a,size);
+    if(num==-1)
+        printf("no adjacent number is repeated");
+    else
+        printf("the first occurrence of adjacent duplicate values is: %d",num);
+    getch();
+}
+int duplicate(int b[],int size)
+{
+    int i,j;
+    for(i=0;i<size-1;i++)
+    {
+        for(j=i+1;j<size;j++)
+        {
+            if(b[j]==b[j+1])
+                return b[j];
+        }
+    }
+    for(i=0;i<size;i++)
+        return -1;
+}
+
+
+6. Write a function in C to read n number of values in an array and display it in reverse
+order.
+
+#include<stdio.h>
+#include<conio.h>
+void reverse_array(int b[],int size);
+int main()
+{
+    int size,i;
+    printf("enter size of array:");
+    scanf("%d",&size);
+    int a[size];
+    printf("enter numbers of array:");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("\nreverse array is:");
+    reverse_array(a,size);
+    getch();
+}
+ void reverse_array(int b[],int size)
+{
+    int i;
+    for(i=size-1;i>=0;i--)
+    {
+        printf("%d ",b[i]);
+    }
+}
+
+7. Write a function in C to count a total number of duplicate elements in an array.
+
+#include<stdio.h>
+#include<conio.h>
+int duplicate_count(int b[],int size);
+int main()
+{
+    int size,i,num;
+    printf("enter size of array:");
+    scanf("%d",&size);
+    int a[size];
+    printf("enter numbers of array:");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    num=duplicate_count(a,size);
+    if(num==0)
+        printf("no number is repeated");
+    else
+        printf("the total no. of occurrence of duplicate values is: %d",num);
+    getch();
+}
+int duplicate_count(int b[],int size)
+{
+    int i,j,count=0,total_count=0;
+    for(i=0;i<size-1;i++)
+    {
+        count=0;
+        for(j=i+1;j<size;j++)
+        {
+            if(b[i]==b[j])
+                count+=1;
+        }
+        total_count+=count;
+    }
+    return total_count;
+}
+
+
+8. Write a function in C to print all unique elements in an array.
+
+#include<stdio.h>
+#include<conio.h>
+void unique(int b[],int size);
+int main()
+{
+    int size,i,num;
+    printf("enter size of array:");
+    scanf("%d",&size);
+    int a[size];
+    printf("enter numbers of array:");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("unique elements in array is:");
+    unique(a,size);
+    getch();
+}
+void unique(int b[],int size)
+{
+    int i,j,count=0;
+    for(i=0;i<=size-1;i++)
+    {
+        count=0;
+        for(j=0;j<size;j++)
+        {
+            if(b[i]==b[j]&&i!=j)
+                {
+                    count+=1;
+                    break;
+                }
+        }
+        if(count==0)
+            printf("%d ",b[i]);
+    }
+}
+
+9. Write a function in C to merge two arrays of the same size sorted in descending
+order.
+
+#include<stdio.h>
+#include<conio.h>
+void merge(int a[],int b[],int size);
+int main()
+{
+    int size,i,num;
+    printf("enter size of array:");
+    scanf("%d",&size);
+    int a[size],b[size];
+    printf("enter numbers of array1:");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("enter numbers of array2:");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&b[i]);
+    }
+    printf("new array after merge and sorted in descending order is:\n");
+    merge(a,b,size);
+    getch();
+}
+void merge(int a[],int b[],int size)
+{
+    int i,j,c[2*size],temp;
+    for(i=0;i<size;i++)
+    {
+        c[i]=a[i];
+    }
+    for(i=0;i<size;i++)
+    {
+        c[size+i]=b[i];
+    }
+    for(i=0;i<2*size-1;i++)
+    {
+        for(j=i+1;j<2*size;j++)
+        {
+            if(c[i]<c[j])
+            {
+                temp=c[i];
+                c[i]=c[j];
+                c[j]=temp;
+            }
+        }
+    }
+    for(i=0;i<2*size;i++)
+        printf("%d ",c[i]);
+}
+
+10. Write a function in C to count the frequency of each element of an array.
+
+#include<stdio.h>
+#include<conio.h>
+void frequency(int b[],int size);
+int main()
+{
+    int size,i,num;
+    printf("enter size of array:");
+    scanf("%d",&size);
+    int a[size];
+    printf("enter numbers of array:");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    frequency(a,size);
+    getch();
+}
+void frequency(int b[],int size)
+{
+    int i,j,count=1,new_arr[size];
+    for(i=0;i<size;i++)
+    {
+        new_arr[i]=b[i];
+    }
+    for(i=0;i<size-1;i++)
+    {
+        count=1;
+        if(new_arr[i]!=0)
+        {
+            for(j=i+1;j<size;j++)
+            {
+                if(new_arr[i]==new_arr[j])
+                    {
+                        count+=1;
+                        new_arr[j]=0;
+                    }
+            }
+            printf("frequency of %d is: %d\n",new_arr[i],count);
+        }
+    }
+}
+
+
+
+
+
