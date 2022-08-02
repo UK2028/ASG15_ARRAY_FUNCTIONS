@@ -68,6 +68,7 @@ int smallest(int b[],int n)
 
 3. Write a function to sort an array of any size. (TSRS)
 
+
 #include<stdio.h>
 #include<conio.h>
 int sorting(int b[],int a,int pos,int size);
@@ -95,16 +96,15 @@ int sorting(int b[],int a,int pos,int size)
     int i,temp;
     for(i=pos+1;i<size;i++)
     {
-        if(b[pos]>b[i])
+        if(a>b[i])
         {
-            temp=b[pos];
-            b[pos]=b[i];
+            temp=a;
+            a=b[i];
             b[i]=temp;
         }
     }
-    return b[pos];
+    return a;
 }
-
 
 4. Write a function to rotate an array by n position in d direction. The d is an indicative
 value for left or right. (For example, if array of size 5 is [32, 29, 40, 12, 70]; n is 2 and
